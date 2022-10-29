@@ -156,7 +156,7 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
                 </div>
 
                 {(open && !isDisabled) && (
-                    <div tabIndex={-1} className="absolute z-[100] w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700">
+                    <div tabIndex={-1} className="z-[100] fixed inset-x-0 bottom-0 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700">
                         {isSearchable && (
                             <SearchInput
                                 value={inputValue}
