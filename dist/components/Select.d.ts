@@ -13,6 +13,7 @@ interface SelectProps {
     menuIsOpen?: boolean;
     searchInputPlaceholder?: string;
     noOptionsMessage?: string;
+    enableInput?: boolean;
 }
 declare const Select: React.FC<SelectProps>;
 export default Select;

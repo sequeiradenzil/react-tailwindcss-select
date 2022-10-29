@@ -139,7 +139,7 @@ const Options = ({ list, noOptionsMessage, text, isMultiple, value }) => {
         filterResult.length === 0 && (React.createElement(DisabledItem, null, noOptionsMessage))));
 };
 
-const Select = ({ options = [], value = null, onChange, placeholder = "Select...", searchInputPlaceholder = "Search...", isMultiple = false, isClearable = false, isSearchable = false, isDisabled = false, loading = false, menuIsOpen = false, noOptionsMessage = "No options found" }) => {
+const Select = ({ options = [], value = null, onChange, placeholder = "Select...", searchInputPlaceholder = "Search...", isMultiple = false, isClearable = false, isSearchable = false, isDisabled = false, loading = false, menuIsOpen = false, enableInput = false, noOptionsMessage = "No options found" }) => {
     const [open, setOpen] = useState(menuIsOpen);
     const [list, setList] = useState(options);
     const [inputValue, setInputValue] = useState("");
@@ -212,7 +212,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
         React.createElement("div", { className: "relative w-full", ref: ref },
             React.createElement("div", { tabIndex: 0, "aria-expanded": open, onKeyDown: onPressEnterOrSpace, onClick: toggle, className: `flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}` },
                 React.createElement("input", { onChange: e => setInputValue(e.target.value), placeholder: placeholder, className: "grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1" }),
-                !isMultiple ? (React.createElement("p", { className: "truncate cursor-default select-none" }, (value && !Array.isArray(value)) ? value.label : placeholder)) : (React.createElement(React.Fragment, null,
+                !isMultiple && !enableInput ? (React.createElement("p", { className: "truncate cursor-default select-none" }, (value && !Array.isArray(value)) ? value.label : placeholder)) : (React.createElement(React.Fragment, null,
                     value === null && placeholder,
                     Array.isArray(value) && (value.map((item, index) => (React.createElement("div", { className: `bg-gray-200 border rounded-sm flex space-x-1${isDisabled ? ' border-gray-500 px-1' : ' pl-1'}`, key: index },
                         React.createElement("p", { className: "text-gray-600 truncate cursor-default select-none" }, item.label),

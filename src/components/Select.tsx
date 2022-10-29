@@ -20,9 +20,10 @@ interface SelectProps {
     menuIsOpen?: boolean,
     searchInputPlaceholder?: string,
     noOptionsMessage?: string
+    enableInput?:boolean
 }
 
-const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, placeholder="Select...", searchInputPlaceholder = "Search...", isMultiple = false, isClearable = false, isSearchable = false, isDisabled = false, loading = false, menuIsOpen = false, noOptionsMessage = "No options found"}) => {
+const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, placeholder="Select...", searchInputPlaceholder = "Search...", isMultiple = false, isClearable = false, isSearchable = false, isDisabled = false, loading = false, menuIsOpen = false, enableInput = false, noOptionsMessage = "No options found"}) => {
     const [open, setOpen] = useState<boolean>(menuIsOpen);
     const [list, setList] = useState<ListOption>(options);
     const [inputValue, setInputValue] = useState<string>("");
@@ -110,7 +111,7 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
             <div className="relative w-full" ref={ref}>
                 <div tabIndex={0} aria-expanded={open} onKeyDown={onPressEnterOrSpace} onClick={toggle} className={`flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}`}>
                     <input onChange={e => setInputValue(e.target.value)} placeholder={placeholder} className="grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1"/>
-                        {!isMultiple ? (
+                        {!isMultiple && !enableInput ? (
                             <p className="truncate cursor-default select-none">{(value && !Array.isArray(value)) ? value.label : placeholder}</p>
                         ) : (
                             <>
