@@ -232,7 +232,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
                         React__default["default"].createElement("span", { className: "w-px h-full inline-block text-white bg-gray-300 text-opacity-0" })),
                     React__default["default"].createElement("div", { className: "px-1.5" },
                         React__default["default"].createElement(ChevronIcon, { className: `transition duration-300 w-6 h-6 p-0.5${open ? ' transform rotate-90 text-gray-500' : ' text-gray-300'}` })))),
-            (open && !isDisabled) && (React__default["default"].createElement("div", { tabIndex: -1, className: "z-[100] sm:ml-[15%] md:ml-[30%] fixed inset-x-0 bottom-0 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700" },
+            (open && !isDisabled) && (React__default["default"].createElement("div", { tabIndex: -1, className: "z-[100] sm:ml-[15%] md:ml-[30%] max-w-md fixed inset-x-0 bottom-0 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700" },
                 isSearchable && (React__default["default"].createElement(SearchInput, { value: inputValue, placeholder: searchInputPlaceholder, onChange: e => setInputValue(e.target.value) })),
                 React__default["default"].createElement(Options, { list: list, noOptionsMessage: noOptionsMessage, text: inputValue, isMultiple: isMultiple, value: value }))))));
 };
