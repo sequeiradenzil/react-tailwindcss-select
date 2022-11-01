@@ -111,26 +111,26 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
             <div className="relative w-full" ref={ref}>
                 <div tabIndex={0} aria-expanded={open} onKeyDown={onPressEnterOrSpace} onClick={toggle} className={`flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}`}>
                     <input onChange={e => setInputValue(e.target.value)} placeholder={placeholder} className="grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1"/>
-                        {!isMultiple && !enableInput ? (
-                            <p className="truncate cursor-default select-none">{(value && !Array.isArray(value)) ? value.label : placeholder}</p>
-                        ) : (
-                            <>
-                                {value === null && placeholder}
+                        {/*{!isMultiple && !enableInput ? (*/}
+                        {/*    <p className="truncate cursor-default select-none">{(value && !Array.isArray(value)) ? value.label : placeholder}</p>*/}
+                        {/*) : (*/}
+                        {/*    <>*/}
+                        {/*        {value === null && placeholder}*/}
 
-                                {Array.isArray(value) && (
-                                    value.map((item, index) => (
-                                        <div className={`bg-gray-200 border rounded-sm flex space-x-1${isDisabled ? ' border-gray-500 px-1' : ' pl-1'}`} key={index}>
-                                            <p className="text-gray-600 truncate cursor-default select-none">{item.label}</p>
-                                            {!isDisabled && (
-                                                <div onClick={e => removeItem(e, item)} className={`flex items-center px-1 cursor-pointer rounded-r-sm hover:bg-red-200 hover:text-red-600`}>
-                                                    <CloseIcon className="w-3 h-3 mt-0.5"/>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))
-                                )}
-                            </>
-                        )}
+                        {/*        {Array.isArray(value) && (*/}
+                        {/*            value.map((item, index) => (*/}
+                        {/*                <div className={`bg-gray-200 border rounded-sm flex space-x-1${isDisabled ? ' border-gray-500 px-1' : ' pl-1'}`} key={index}>*/}
+                        {/*                    <p className="text-gray-600 truncate cursor-default select-none">{item.label}</p>*/}
+                        {/*                    {!isDisabled && (*/}
+                        {/*                        <div onClick={e => removeItem(e, item)} className={`flex items-center px-1 cursor-pointer rounded-r-sm hover:bg-red-200 hover:text-red-600`}>*/}
+                        {/*                            <CloseIcon className="w-3 h-3 mt-0.5"/>*/}
+                        {/*                        </div>*/}
+                        {/*                    )}*/}
+                        {/*                </div>*/}
+                        {/*            ))*/}
+                        {/*        )}*/}
+                        {/*    </>*/}
+                        {/*)}*/}
 
                     <div className="flex flex-none items-center py-1.5">
                         {loading && (
@@ -156,14 +156,14 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
                 </div>
 
                 {(open && !isDisabled) && (
-                    <div tabIndex={-1} className=" absolute z-[10000000000] w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700">
-                        {isSearchable && (
-                            <SearchInput
-                                value={inputValue}
-                                placeholder={searchInputPlaceholder}
-                                onChange={e => setInputValue(e.target.value)}
-                            />
-                        )}
+                    <div tabIndex={-1} className=" absolute z-100 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700">
+                        {/*{isSearchable && (*/}
+                        {/*    <SearchInput*/}
+                        {/*        value={inputValue}*/}
+                        {/*        placeholder={searchInputPlaceholder}*/}
+                        {/*        onChange={e => setInputValue(e.target.value)}*/}
+                        {/*    />*/}
+                        {/*)}*/}
 
                         <Options
                             list={list}

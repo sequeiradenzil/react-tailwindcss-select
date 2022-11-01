@@ -14,10 +14,6 @@ const ChevronIcon = ({ className = "" }) => {
     return (React.createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 20 20", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { fillRule: "evenodd", d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z", clipRule: "evenodd" })));
 };
-const SearchIcon = ({ className = "" }) => {
-    return (React.createElement("svg", { className: className, fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg" },
-        React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" })));
-};
 
 function useOnClickOutside(ref, handler) {
     useEffect(() => {
@@ -35,12 +31,6 @@ function useOnClickOutside(ref, handler) {
         };
     }, [ref, handler]);
 }
-
-const SearchInput = ({ placeholder = "", value = "", onChange, name = "" }) => {
-    return (React.createElement("div", { className: "relative py-1 px-2.5" },
-        React.createElement(SearchIcon, { className: "absolute w-5 h-5 mt-2.5 pb-0.5 ml-2 text-gray-500" }),
-        React.createElement("input", { className: "w-full py-2 pl-8 text-sm text-gray-500 bg-gray-100 border border-gray-200 rounded focus:border-gray-200 focus:ring-0 focus:outline-none", type: "text", placeholder: placeholder, value: value, onChange: onChange, name: name })));
-};
 
 const DisabledItem = ({ children }) => {
     return (React.createElement("div", { className: `px-2 py-2 cursor-not-allowed truncate text-gray-400 select-none` }, children));
@@ -201,7 +191,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
         e.stopPropagation();
         onChange(null);
     }, [onChange]);
-    const removeItem = useCallback((e, item) => {
+    useCallback((e, item) => {
         if (isMultiple && Array.isArray(value) && value.length) {
             e.stopPropagation();
             const result = value.filter(current => item.value !== current.value);
@@ -212,12 +202,6 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
         React.createElement("div", { className: "relative w-full", ref: ref },
             React.createElement("div", { tabIndex: 0, "aria-expanded": open, onKeyDown: onPressEnterOrSpace, onClick: toggle, className: `flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}` },
                 React.createElement("input", { onChange: e => setInputValue(e.target.value), placeholder: placeholder, className: "grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1" }),
-                !isMultiple && !enableInput ? (React.createElement("p", { className: "truncate cursor-default select-none" }, (value && !Array.isArray(value)) ? value.label : placeholder)) : (React.createElement(React.Fragment, null,
-                    value === null && placeholder,
-                    Array.isArray(value) && (value.map((item, index) => (React.createElement("div", { className: `bg-gray-200 border rounded-sm flex space-x-1${isDisabled ? ' border-gray-500 px-1' : ' pl-1'}`, key: index },
-                        React.createElement("p", { className: "text-gray-600 truncate cursor-default select-none" }, item.label),
-                        !isDisabled && (React.createElement("div", { onClick: e => removeItem(e, item), className: `flex items-center px-1 cursor-pointer rounded-r-sm hover:bg-red-200 hover:text-red-600` },
-                            React.createElement(CloseIcon, { className: "w-3 h-3 mt-0.5" }))))))))),
                 React.createElement("div", { className: "flex flex-none items-center py-1.5" },
                     loading && (React.createElement("div", { className: "px-1.5" },
                         React.createElement(Spinner, null))),
@@ -227,8 +211,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
                         React.createElement("span", { className: "w-px h-full inline-block text-white bg-gray-300 text-opacity-0" })),
                     React.createElement("div", { className: "px-1.5" },
                         React.createElement(ChevronIcon, { className: `transition duration-300 w-6 h-6 p-0.5${open ? ' transform rotate-90 text-gray-500' : ' text-gray-300'}` })))),
-            (open && !isDisabled) && (React.createElement("div", { tabIndex: -1, className: " absolute z-[10000000000] w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700" },
-                isSearchable && (React.createElement(SearchInput, { value: inputValue, placeholder: searchInputPlaceholder, onChange: e => setInputValue(e.target.value) })),
+            (open && !isDisabled) && (React.createElement("div", { tabIndex: -1, className: " absolute z-100 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700" },
                 React.createElement(Options, { list: list, noOptionsMessage: noOptionsMessage, text: inputValue, isMultiple: isMultiple, value: value }))))));
 };
 
