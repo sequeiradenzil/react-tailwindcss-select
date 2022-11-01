@@ -167,7 +167,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
     useOnClickOutside(ref, () => {
         closeDropDown();
     });
-    const onPressEnterOrSpace = useCallback((e) => {
+    useCallback((e) => {
         e.preventDefault();
         if ((e.code === "Enter" || e.code === "Space") && !isDisabled) {
             toggle();
@@ -200,7 +200,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
     }, [isMultiple, onChange, value]);
     return (React.createElement(SelectProvider, { value: value, handleValueChange: handleValueChange },
         React.createElement("div", { className: "relative w-full", ref: ref },
-            React.createElement("div", { tabIndex: 0, "aria-expanded": open, onKeyDown: onPressEnterOrSpace, onClick: toggle, className: `flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}` },
+            React.createElement("div", { tabIndex: 0, "aria-expanded": open, onClick: toggle, className: `flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}` },
                 React.createElement("input", { className: "grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1", type: "text", value: inputValue, onChange: e => setInputValue(e.target.value), placeholder: placeholder, name: "" }),
                 React.createElement("div", { className: "flex flex-none items-center py-1.5" },
                     loading && (React.createElement("div", { className: "px-1.5" },
