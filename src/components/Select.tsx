@@ -83,22 +83,6 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
             if (isMultiple && (Array.isArray(value) || value === null)) {
 
                 onChange(value === null ? [selected] : [...value, selected]);
-                const filterdiv = document.getElementById('filterdiv');
-                if (selected !== null && filterdiv != null){
-                      let addhtml = "   <span\n" +
-                     "                                className=\"inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" +
-                      + selected +
-                     "  <button type=\"button\"\n" +
-                     "          className=\"ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
-                     "    <span className=\"sr-only\">Remove large option</span>\n" +
-                     "    <svg className=\"h-2 w-2\" stroke=\"currentColor\" fill=\"none\" viewBox=\"0 0 8 8\">\n" +
-                     "      <path strokeLinecap=\"round\" strokeWidth=\"1.5\" d=\"M1 1l6 6m0-6L1 7\"/>\n" +
-                     "    </svg>\n" +
-                     "  </button>\n" +
-                     "</span>" ;
-                      filterdiv.innerHTML += addhtml
-
-                }
 
             }
         }
@@ -121,6 +105,27 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
         }
     }, [isMultiple, onChange, value]);
 
+    const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
+        const selectedValue = e.currentTarget.value
+    setInputValue(selectedValue)
+         const filterdiv = document.getElementById('filterdiv');
+                if (selectedValue !== null && filterdiv != null){
+                      let addhtml = "   <span\n" +
+                     "                                className=\"inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" +
+                      + selectedValue +
+                     "  <button type=\"button\"\n" +
+                     "          className=\"ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
+                     "    <span className=\"sr-only\">Remove large option</span>\n" +
+                     "    <svg className=\"h-2 w-2\" stroke=\"currentColor\" fill=\"none\" viewBox=\"0 0 8 8\">\n" +
+                     "      <path strokeLinecap=\"round\" strokeWidth=\"1.5\" d=\"M1 1l6 6m0-6L1 7\"/>\n" +
+                     "    </svg>\n" +
+                     "  </button>\n" +
+                     "</span>" ;
+                      filterdiv.innerHTML += addhtml
+
+                }
+}
+
 
 
     return (
@@ -130,7 +135,7 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
         >
             <div className="relative w-full" ref={ref}>
                 <div tabIndex={0} aria-expanded={open} onClick={toggle} className={`flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}`}>
-                    <input className="grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1" type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder={placeholder}/>
+                    <input className="grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1" type="text" value={inputValue} onChange={e =>onChangeInput(e)} placeholder={placeholder}/>
                         {/*{!isMultiple && !enableInput ? (*/}
                         {/*    <p className="truncate cursor-default select-none">{(value && !Array.isArray(value)) ? value.label : placeholder}</p>*/}
                         {/*) : (*/}
