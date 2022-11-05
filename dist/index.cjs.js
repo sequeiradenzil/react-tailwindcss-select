@@ -188,10 +188,10 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
             if (isMultiple && (Array.isArray(value) || value === null)) {
                 onChange(value === null ? [selected] : [...value, selected]);
                 const filterdiv = document.getElementById('filterdiv');
-                if (value !== null && filterdiv != null) {
+                if (selected !== null && filterdiv != null) {
                     let addhtml = "   <span\n" +
                         "                                className=\"inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" +
-                        +value +
+                        +selected +
                         "  <button type=\"button\"\n" +
                         "          className=\"ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
                         "    <span className=\"sr-only\">Remove large option</span>\n" +
