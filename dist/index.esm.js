@@ -56,6 +56,21 @@ const SelectProvider = ({ value, handleValueChange, children }) => {
 const Item = ({ item }) => {
     const { value, handleValueChange } = useSelectContext();
     const isSelected = useMemo(() => {
+        const filterdiv = document.getElementById('filterdiv');
+        if (item.value !== null && filterdiv != null) {
+            let addhtml = "   <span\n" +
+                "                                className=\"inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" +
+                +item.value +
+                "  <button type=\"button\"\n" +
+                "          className=\"ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
+                "    <span className=\"sr-only\">Remove large option</span>\n" +
+                "    <svg className=\"h-2 w-2\" stroke=\"currentColor\" fill=\"none\" viewBox=\"0 0 8 8\">\n" +
+                "      <path strokeLinecap=\"round\" strokeWidth=\"1.5\" d=\"M1 1l6 6m0-6L1 7\"/>\n" +
+                "    </svg>\n" +
+                "  </button>\n" +
+                "</span>";
+            filterdiv.innerHTML += addhtml;
+        }
         return value !== null && !Array.isArray(value) && value.value === item.value;
     }, [item.value, value]);
     return (React.createElement(React.Fragment, null, item.disabled ? (React.createElement(DisabledItem, null, item.label)) : (React.createElement("li", { "aria-selected": isSelected, role: "option", onClick: () => handleValueChange(item), className: `block transition duration-200 px-2 py-2 cursor-pointer select-none truncate rounded ${isSelected ? 'text-white bg-blue-500' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-500'}` }, item.label))));
@@ -175,6 +190,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
     }, [isDisabled, toggle]);
     const handleValueChange = useCallback((selected) => {
         function update() {
+            console.log(selected, value);
             if (!isMultiple && !Array.isArray(value)) {
                 closeDropDown();
                 onChange(selected);
@@ -198,29 +214,10 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
             onChange(result.length ? result : null);
         }
     }, [isMultiple, onChange, value]);
-    const onChangeInput = (e) => {
-        const selectedValue = e.currentTarget.value;
-        setInputValue(selectedValue);
-        const filterdiv = document.getElementById('filterdiv');
-        if (selectedValue !== null && filterdiv != null) {
-            let addhtml = "   <span\n" +
-                "                                className=\"inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" +
-                +selectedValue +
-                "  <button type=\"button\"\n" +
-                "          className=\"ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
-                "    <span className=\"sr-only\">Remove large option</span>\n" +
-                "    <svg className=\"h-2 w-2\" stroke=\"currentColor\" fill=\"none\" viewBox=\"0 0 8 8\">\n" +
-                "      <path strokeLinecap=\"round\" strokeWidth=\"1.5\" d=\"M1 1l6 6m0-6L1 7\"/>\n" +
-                "    </svg>\n" +
-                "  </button>\n" +
-                "</span>";
-            filterdiv.innerHTML += addhtml;
-        }
-    };
     return (React.createElement(SelectProvider, { value: value, handleValueChange: handleValueChange },
         React.createElement("div", { className: "relative w-full", ref: ref },
             React.createElement("div", { tabIndex: 0, "aria-expanded": open, onClick: toggle, className: `flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition duration-300 focus:outline-none${isDisabled ? ' bg-gray-200' : ' bg-white hover:border-gray-400 focus:ring-2 focus:ring-blue-500'}` },
-                React.createElement("input", { className: "grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1", type: "text", value: inputValue, onChange: e => onChangeInput(e), placeholder: placeholder }),
+                React.createElement("input", { className: "grow pl-2.5 py-2 pr-2 flex flex-wrap gap-1", type: "text", value: inputValue, onChange: e => setInputValue(e.target.value), placeholder: placeholder }),
                 React.createElement("div", { className: "flex flex-none items-center py-1.5" },
                     loading && (React.createElement("div", { className: "px-1.5" },
                         React.createElement(Spinner, null))),
