@@ -156,11 +156,11 @@ const Select: React.FC<SelectProps> = ({options = [], value = null, onChange, pl
                             </div>
                         )}
 
-                        {(isClearable && !isDisabled && value !== null) && (
-                            <div className="px-1.5 cursor-pointer" onClick={clearValue}>
-                                <CloseIcon className={"w-5 h-5 p-0.5"}/>
-                            </div>
-                        )}
+                        {/*{(isClearable && !isDisabled && value !== null) && (*/}
+                        {/*    <div className="px-1.5 cursor-pointer" onClick={clearValue}>*/}
+                        {/*        <CloseIcon className={"w-5 h-5 p-0.5"}/>*/}
+                        {/*    </div>*/}
+                        {/*)}*/}
 
                         <div className="h-full">
                             <span className="w-px h-full inline-block text-white bg-gray-300 text-opacity-0"/>

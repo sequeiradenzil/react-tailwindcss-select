@@ -12,10 +12,6 @@ const Spinner = () => {
         React__default["default"].createElement("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" })));
 };
 
-const CloseIcon = ({ className = "" }) => {
-    return (React__default["default"].createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 20 20", xmlns: "http://www.w3.org/2000/svg" },
-        React__default["default"].createElement("path", { fillRule: "evenodd", d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z", clipRule: "evenodd" })));
-};
 const ChevronIcon = ({ className = "" }) => {
     return (React__default["default"].createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 20 20", xmlns: "http://www.w3.org/2000/svg" },
         React__default["default"].createElement("path", { fillRule: "evenodd", d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z", clipRule: "evenodd" })));
@@ -208,7 +204,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
             update();
         }
     }, [closeDropDown, isMultiple, onChange, value]);
-    const clearValue = React.useCallback((e) => {
+    React.useCallback((e) => {
         e.stopPropagation();
         onChange(null);
     }, [onChange]);
@@ -226,8 +222,6 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
                 React__default["default"].createElement("div", { className: "flex flex-none items-center py-1.5" },
                     loading && (React__default["default"].createElement("div", { className: "px-1.5" },
                         React__default["default"].createElement(Spinner, null))),
-                    (isClearable && !isDisabled && value !== null) && (React__default["default"].createElement("div", { className: "px-1.5 cursor-pointer", onClick: clearValue },
-                        React__default["default"].createElement(CloseIcon, { className: "w-5 h-5 p-0.5" }))),
                     React__default["default"].createElement("div", { className: "h-full" },
                         React__default["default"].createElement("span", { className: "w-px h-full inline-block text-white bg-gray-300 text-opacity-0" })),
                     React__default["default"].createElement("div", { className: "px-1.5" },
