@@ -182,7 +182,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
             const filterdiv = document.getElementById('filterdiv');
             if (selected.label !== null && filterdiv !== null) {
                 let addhtml = "   <div\n" +
-                    "                                class=\"inline-block items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" + selected.label +
+                    "                                class=\"whitespace-nowrap inline-block items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700\">\n" + selected.label +
                     "  <button type=\"button\"\n" +
                     "          class=\"ml-0.5 inline-block h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none\">\n" +
                     "    <span class=\"sr-only\">Remove large option</span>\n" +
