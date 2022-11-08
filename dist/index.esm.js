@@ -203,7 +203,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
                 //     "                        </svg> \n" +
                 //     "                      </button>\n" +
                 //     "                    </span>"
-                // filterdiv.innerHTML += addhtml;
+                filterdiv.innerHTML += createspan;
             }
         }
         if (selected !== value) {

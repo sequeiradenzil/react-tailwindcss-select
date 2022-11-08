@@ -122,7 +122,7 @@ const Select: React.FC<SelectProps> = ({
                 //     "                        </svg> \n" +
                 //     "                      </button>\n" +
                 //     "                    </span>"
-                // filterdiv.innerHTML += addhtml;
+                filterdiv.innerHTML += createspan;
             }
         }
 
