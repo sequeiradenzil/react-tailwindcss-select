@@ -187,6 +187,10 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
                 delbutton.addEventListener("click", function handleClick(event) {
                     event.stopPropagation();
                     removeItem(selected);
+                    console.log("I am clicked", selected);
+                    console.log(value);
+                    delbutton?.parentElement?.remove();
+                    removeItem(selected);
                 });
                 delbutton.className = "ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none";
                 delbutton.innerHTML = "<span class=\"sr-only\">Remove large option</span>\n" +
