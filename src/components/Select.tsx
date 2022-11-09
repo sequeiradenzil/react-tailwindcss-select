@@ -196,11 +196,15 @@ const Select: React.FC<SelectProps> = ({
                         <div className="h-full">
                             <span className="w-px h-full inline-block text-white bg-gray-300 text-opacity-0"/>
                         </div>
-
-                        <div className="px-1.5">
+                        {enableInput ? (
+                            <div className="absolute flex items-center inset-y-0 right-0">
                             <ChevronIcon
-                                className={`transition duration-300 w-6 h-6 p-0.5${open ? ' transform rotate-90 text-gray-500' : ' text-gray-300'}`}/>
+                                className={`transition duration-300 w-4 h-4 p-0.5${open ? ' transform rotate-90 text-gray-500' : ' text-gray-300'}`}/>
                         </div>
+                        ):(
+                            <></>
+                        )}
+
                     </div>
                 </div>
 
