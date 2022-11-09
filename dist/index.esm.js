@@ -182,7 +182,7 @@ const Select = ({ options = [], value = null, onChange, placeholder = "Select...
             const filterdiv = document.getElementById('filterdiv');
             if (selected.label !== null && filterdiv !== null) {
                 const createspan = document.createElement("span");
-                createspan.className = "mr-5 inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 text-sm font-medium text-indigo-700";
+                createspan.className = " p-5 border shadow mr-5 inline-flex items-center rounded-full bg-gray-50 py-2 pl-2.5 pr-1 text-sm font-medium";
                 const delbutton = document.createElement("button");
                 delbutton.addEventListener("click", function handleClick(event) {
                     event.stopPropagation();
